@@ -5,11 +5,13 @@ VisualStudioVersion = 16.0.32002.261
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebUI", "WebUI", "{E346A2FD-79B7-4548-B3F9-15FD4FA4A79E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blog.WebUI.Site", "WebUI\Blog.WebUI.Site\Blog.WebUI.Site.csproj", "{9621E0C3-366D-4B68-BE11-8E11013A168A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blog.WebUI.Site", "WebUI\Blog.WebUI.Site\Blog.WebUI.Site.csproj", "{9621E0C3-366D-4B68-BE11-8E11013A168A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogSitesi.Model", "BlogSitesi.Model\BlogSitesi.Model.csproj", "{08CC6C1B-D5AF-4400-9318-0D86416442F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlogSitesi.Model", "BlogSitesi.Model\BlogSitesi.Model.csproj", "{08CC6C1B-D5AF-4400-9318-0D86416442F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogSitesi.Data", "BlogSitesi.Data\BlogSitesi.Data.csproj", "{C340EAC3-6E7B-4B84-968C-FF99D0BBE53A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlogSitesi.Data", "BlogSitesi.Data\BlogSitesi.Data.csproj", "{C340EAC3-6E7B-4B84-968C-FF99D0BBE53A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogSitesi.WebUI.Infrastructure", "WebUI\BlogSitesi.WebUI.Infrastructure\BlogSitesi.WebUI.Infrastructure.csproj", "{C9C387D2-1693-4AD5-96D3-3B4E100E7186}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,12 +31,17 @@ Global
 		{C340EAC3-6E7B-4B84-968C-FF99D0BBE53A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C340EAC3-6E7B-4B84-968C-FF99D0BBE53A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C340EAC3-6E7B-4B84-968C-FF99D0BBE53A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9C387D2-1693-4AD5-96D3-3B4E100E7186}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9C387D2-1693-4AD5-96D3-3B4E100E7186}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9C387D2-1693-4AD5-96D3-3B4E100E7186}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9C387D2-1693-4AD5-96D3-3B4E100E7186}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{9621E0C3-366D-4B68-BE11-8E11013A168A} = {E346A2FD-79B7-4548-B3F9-15FD4FA4A79E}
+		{C9C387D2-1693-4AD5-96D3-3B4E100E7186} = {E346A2FD-79B7-4548-B3F9-15FD4FA4A79E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7A9C78A8-20DB-4E1D-945F-16FF77884520}
