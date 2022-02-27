@@ -150,7 +150,6 @@ namespace BlogSitesi.Data.Infrastructor
                 return new List<T>();            
             }
         }
-
         public T GetByKey(int id)
         {
             try
