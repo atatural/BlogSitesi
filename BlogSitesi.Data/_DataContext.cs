@@ -6,7 +6,7 @@ using System.Text;
 
 namespace BlogSitesi.Data
 {
-    public class DataContext : DbContext
+    public class DataContext : DbContext //23:35
     {
         public DataContext(string connectionString): base( new DbContextOptionsBuilder().UseMySQL(connectionString).Options)
         {

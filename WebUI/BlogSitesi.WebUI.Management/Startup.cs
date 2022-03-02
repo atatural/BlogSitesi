@@ -1,3 +1,4 @@
+using BlogSitesi.Data;
 using BlogSitesi.Data.Infrastructor.Entities;
 using BlogSitesi.WebUI.Infrastructure.Rules;
 using Microsoft.AspNetCore.Builder;
@@ -51,6 +52,9 @@ namespace BlogSitesi.WebUI.Management
             {
                 options.MinimumSameSitePolicy = SameSiteMode.Strict;
             });
+            //Data
+            services.AddTransient<CategoryData>();
+
 
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
 
