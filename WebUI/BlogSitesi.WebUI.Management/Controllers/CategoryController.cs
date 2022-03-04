@@ -18,7 +18,9 @@ namespace BlogSitesi.WebUI.Management.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var categories = _categoryData.GetBy(x => x.IsDeleted);
+            /*Booolean değerlerde başında "!" varsa pasif olmayan eğer yoksa aktif anlamına geliyor */
+            //var categories = _categoryData.GetBy(x => !x.IsDeleted); => isdeleted false olanları getir
+            var categories = _categoryData.GetBy(x => x.IsDeleted == false && x.IsActive);
             return View(categories);
         }
         [HttpGet]

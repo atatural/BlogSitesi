@@ -1,0 +1,44 @@
+﻿@model BlogSitesi.Model.Category
+@{
+    ViewBag.Title = "Kategori Ekle";
+}
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-000">Kategoriler</h1>
+        <a href="@Url.Action("Index","Category")" class="btn btn-sm btn-primary shadow-sm">Listeye Dön</a>
+    </div>
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Kategoriler</h1>
+    <p class="mb-4">
+        Burada yeni kategori eklenebilir.
+    </p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <form action="/Category/Add" method="post">
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user" placeholder="Kategori Adı" name="Name" value="@Model.Name">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user" placeholder="Meta Title" maxlength="60" name="MetaTitle" value="@Model.MetaTitle">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user" placeholder="Meta Description" maxlength="160" name="MetaDescription" value="@Model.MetaDescription">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user" placeholder="Slug" name="slug" value="@Model.Slug">
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-lg-2 text-right">Aktif Mi?</label>
+                    <div class="col-lg-10">
+                        @Html.CheckBoxFor(a => a.IsActive, new {@class = "checkbox" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Ekle</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
