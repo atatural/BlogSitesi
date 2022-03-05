@@ -7,13 +7,14 @@
         <h1 class="h3 mb-0 text-gray-000">Kategoriler</h1>
         <a href="@Url.Action("Index","Category")" class="btn btn-sm btn-primary shadow-sm">Listeye Dön</a>
     </div>
-    <!-- Page Heading -->
+
     <h1 class="h3 mb-2 text-gray-800">Kategoriler</h1>
     <p class="mb-4">
         Burada yeni kategori eklenebilir.
     </p>
 
-    <!-- DataTales Example -->
+    @Html.Raw(ViewResultExtensions.ViewResult(ViewBag.Result))
+
     <div class="card shadow mb-4">
         <div class="card-body">
             <form action="/Category/Add" method="post">

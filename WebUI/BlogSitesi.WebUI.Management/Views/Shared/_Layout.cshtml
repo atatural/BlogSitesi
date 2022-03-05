@@ -19,6 +19,7 @@
     <!-- Custom styles for this template-->
     <link href="~/_assets/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="~/_assets/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="~/_assets/css/all.min.css" rel="stylesheet">
 
 </head>
 
@@ -51,11 +52,18 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Index","Category")">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Kategoriler</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="@Url.Action("Index","Content")">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Makaleler</span>
                 </a>
             </li>
+            
         </ul>
         <!-- End of Sidebar -->
         <!-- Content Wrapper -->

@@ -1,4 +1,6 @@
 ﻿using BlogSitesi.Data;
+using BlogSitesi.WebUI.Management.Helpers;
+using BlogSitesi.WebUI.Management.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -48,13 +50,16 @@ namespace BlogSitesi.WebUI.Management.Controllers
                 ViewBag.Result = "";
                 return View(category);
             }
+
+            category.Slug = category.Slug.ToSlug();
+
             var operationResult = _categoryData.Insert(category);
             if (operationResult.IsSucceed)
             {
-                ViewBag.Result = "Eklendi";
+                ViewBag.Result = new ViewModelResult(true, "Yeni Kategori Eklendi!");
                 return View(new Model.Category());
             }
-            ViewBag.Result = "";
+            ViewBag.Result = new ViewModelResult(true, operationResult.Message);
             return View(category);
 
         }
@@ -79,32 +84,31 @@ namespace BlogSitesi.WebUI.Management.Controllers
             if (string.IsNullOrEmpty(category.Slug)) errors.Add("Kategori slug boş bırakılamaz.");
             if (errors.Count > 0)
             {
-                ViewBag.Result = "";
+                ViewBag.Result = new ViewModelResult(false, "Hata oluştu!",errors);
                 return View(category);
             }
-
 
             //Sistemde kayıtlı olan kategoriye eşit mi girilen değerler
             var exist_category = _categoryData.GetBy(x => x.Slug == category.Slug && x.Id == category.Id).FirstOrDefault();
             if(exist_category != null)
             {
-                ViewBag.Result = "";
+                ViewBag.Result = new ViewModelResult(false, "Bu zaten kayıtlı.");
                 return View(category);
             }
 
             modelInDb.Name = category.Name;
             modelInDb.MetaTitle = category.MetaTitle;
             modelInDb.MetaDescription = category.MetaDescription;
-            modelInDb.Slug = category.Slug;
+            modelInDb.Slug = category.Slug.ToSlug();
             modelInDb.IsActive = category.IsActive;
 
             var operationResult = _categoryData.Update(modelInDb);
             if (operationResult.IsSucceed)
             {
-                ViewBag.Result = "Güncellendi!";
+                ViewBag.Result = new ViewModelResult(true, "Kategori güncellendi!");
                 return View(category);
             }
-            ViewBag.Result = "";
+            ViewBag.Result = new ViewModelResult(false, operationResult.Message);
             return View(category);
         }
         [HttpGet]
@@ -114,9 +118,12 @@ namespace BlogSitesi.WebUI.Management.Controllers
             if (category == null)
                 return RedirectToAction("Index", "Category", new { q = "kategori-bulunamadi" });
 
+            category.IsDeleted = true;
             var operationResult = _categoryData.Update(category);
+
             if (operationResult.IsSucceed)
-                return RedirectToAction("Index", "Category", new { q = "kategori-silindi" });
+                return RedirectToAction("Index", "Category", new { q = "kategori-silindi" });       
+          
             else
                 return RedirectToAction("Index", "Category", new { q = "kategori-silinemedi" }); //17:48
         }
