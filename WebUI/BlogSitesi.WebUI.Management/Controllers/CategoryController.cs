@@ -61,7 +61,6 @@ namespace BlogSitesi.WebUI.Management.Controllers
             }
             ViewBag.Result = new ViewModelResult(true, operationResult.Message);
             return View(category);
-
         }
 
         [HttpGet]
@@ -73,6 +72,7 @@ namespace BlogSitesi.WebUI.Management.Controllers
 
             return View(category);
         }
+
         [HttpPost]
         public IActionResult Edit(Model.Category category)
         {
@@ -111,6 +111,7 @@ namespace BlogSitesi.WebUI.Management.Controllers
             ViewBag.Result = new ViewModelResult(false, operationResult.Message);
             return View(category);
         }
+
         [HttpGet]
         public IActionResult Delete(int id)
         {

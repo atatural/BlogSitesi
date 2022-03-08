@@ -23,7 +23,6 @@ namespace BlogSitesi.WebUI.Management
         public IConfigurationRoot ConfigurationRoot { get; }
         public Microsoft.AspNetCore.Hosting.IHostingEnvironment Environment { get; }
 
-
         public Startup(IConfiguration configuration, Microsoft.AspNetCore.Hosting.IHostingEnvironment env)
         {
             Configuration = configuration;
@@ -35,8 +34,6 @@ namespace BlogSitesi.WebUI.Management
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables()
                 .Build();
-
-
         }
         public void ConfigureServices(IServiceCollection services)
         {
@@ -58,10 +55,7 @@ namespace BlogSitesi.WebUI.Management
 
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
 
-            services.AddMvc(x =>
-            {
-                x.EnableEndpointRouting = false;
-            });
+            services.AddMvc(x =>{x.EnableEndpointRouting = false;});
 
             services.Configure<RouteOptions>(routeOptions => routeOptions.AppendTrailingSlash = true);
         }
