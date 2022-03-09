@@ -13,7 +13,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlogSitesi.Data", "BlogSite
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlogSitesi.WebUI.Infrastructure", "WebUI\BlogSitesi.WebUI.Infrastructure\BlogSitesi.WebUI.Infrastructure.csproj", "{C9C387D2-1693-4AD5-96D3-3B4E100E7186}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogSitesi.WebUI.Management", "WebUI\BlogSitesi.WebUI.Management\BlogSitesi.WebUI.Management.csproj", "{FEBD49B1-E909-48ED-ACB6-9E786F119608}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlogSitesi.WebUI.Management", "WebUI\BlogSitesi.WebUI.Management\BlogSitesi.WebUI.Management.csproj", "{FEBD49B1-E909-48ED-ACB6-9E786F119608}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{022B2AEE-931D-4DE4-9382-54D73E45054F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Caching", "Caching", "{CD64AA78-ADED-4FC8-85CB-7C75B1CEE53F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogSitesi.Infrastructure.Caching.Memory", "Infrastructure\Caching\BlogSitesi.Infrastructure.Caching.Memory\BlogSitesi.Infrastructure.Caching.Memory.csproj", "{61E6A371-9F86-497A-8F35-C1787DABB0E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +47,10 @@ Global
 		{FEBD49B1-E909-48ED-ACB6-9E786F119608}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FEBD49B1-E909-48ED-ACB6-9E786F119608}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FEBD49B1-E909-48ED-ACB6-9E786F119608}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61E6A371-9F86-497A-8F35-C1787DABB0E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61E6A371-9F86-497A-8F35-C1787DABB0E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61E6A371-9F86-497A-8F35-C1787DABB0E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61E6A371-9F86-497A-8F35-C1787DABB0E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -49,6 +59,8 @@ Global
 		{9621E0C3-366D-4B68-BE11-8E11013A168A} = {E346A2FD-79B7-4548-B3F9-15FD4FA4A79E}
 		{C9C387D2-1693-4AD5-96D3-3B4E100E7186} = {E346A2FD-79B7-4548-B3F9-15FD4FA4A79E}
 		{FEBD49B1-E909-48ED-ACB6-9E786F119608} = {E346A2FD-79B7-4548-B3F9-15FD4FA4A79E}
+		{CD64AA78-ADED-4FC8-85CB-7C75B1CEE53F} = {022B2AEE-931D-4DE4-9382-54D73E45054F}
+		{61E6A371-9F86-497A-8F35-C1787DABB0E3} = {CD64AA78-ADED-4FC8-85CB-7C75B1CEE53F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7A9C78A8-20DB-4E1D-945F-16FF77884520}

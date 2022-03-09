@@ -37,10 +37,6 @@ namespace BlogSitesi.WebUI.Infrastructure.Cache
                 return fromCache;
             }
         }
-        //9:47
-
-
-
 
         public bool Clear(string name)
         {

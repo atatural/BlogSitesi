@@ -1,5 +1,6 @@
 using BlogSitesi.Data;
 using BlogSitesi.Data.Infrastructor.Entities;
+using BlogSitesi.WebUI.Infrastructure.Cache;
 using BlogSitesi.WebUI.Infrastructure.Rules;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -44,6 +45,12 @@ namespace BlogSitesi.WebUI.Management
             //Config
             services.Configure<DatabaseSetting>(Configuration.GetSection("DatabaseSetting"));
             services.AddOptions();
+
+            //Cache
+            services.AddMemoryCache();
+            services.AddTransient<ICache, BlogSitesi.Infrastructure.Caching.Memory.Cache>();
+            services.AddTransient<CacheHelper>();
+
 
             services.Configure<CookiePolicyOptions>(options =>
             {
