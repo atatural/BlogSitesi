@@ -7,6 +7,7 @@ namespace BlogSitesi.Model
     public class Content : Core.ModelBase
     {
         //Boş geçmemesi için yapıcı metod ile ilk değer atamaları
+        //Yapıcı method
         public Content()
         {
             IsActive = false;
@@ -15,6 +16,7 @@ namespace BlogSitesi.Model
             UpdateDate = DateTime.Now;
             PublishDate = DateTime.Now;
         }
+
 
         public int MediaId { get; set; }
         public virtual Media Media { get; set; }

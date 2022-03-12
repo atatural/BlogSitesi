@@ -1,0 +1,86 @@
+﻿@model BlogSitesi.Model.Content
+@{
+    ViewBag.Title = "Makale Ekle";
+}
+
+<div class="container-fluid">
+
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Makale Ekle</h1>
+        <a href="@Url.Action("Index","Content")" class="btn btn-sm btn-primary shadow-sm">Listeye Dön</a>
+    </div>
+    <p class="mb-4">
+        Burada yeni makale eklerim
+    </p>
+
+    @Html.Raw(ViewResultExtensions.ViewResult(ViewBag.Result))
+
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <form action="/Content/Add" method="post">
+                <div class="form-group">
+                    <select class="form-control" name="CategoryIds" multiple>
+                        <option value="-1" selected>Seçiniz</option>
+                        @foreach (var item in cache.Categories)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user" placeholder="Başlık" name="Title" value="@Model.Title">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user" placeholder="Slug" name="Slug" value="@Model.Slug">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user" placeholder="Meta Title" maxlength="60" name="MetaTitle" value="@Model.MetaTitle">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user" placeholder="Meta Description" maxlength="160" name="MetaDescription" value="@Model.MetaDescription">
+                </div>
+                <div class="form-group">
+                    <textarea name="Description">@Model.Description</textarea>
+                </div>
+                <div class="form-group">
+                    <input type="date" class="form-control form-control-user" placeholder="Yayınlanma Tarihi" name="PublishDate" value="@Model.PublishDate">
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user" placeholder="Etiketler" name="Tags" value="">
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user" placeholder="Media Id" name="MediaId" value="@Model.MediaId">
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-form-label col-lg-2 text-right">Aktif Mi?</label>
+                    <div class="col-lg-10">
+                        @Html.CheckBoxFor(a => a.IsActive, new { @class = "checkbox" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Ekle</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("textarea[name='Description']").summernote({
+                height:300
+            });
+        });
+    </script>
+
+}

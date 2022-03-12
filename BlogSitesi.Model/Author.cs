@@ -5,13 +5,13 @@ using System.Text;
 
 namespace BlogSitesi.Model
 {
-    public class Author:Core.ModelBase
+    public class Author : Core.ModelBase
     {
         public string FullName { get; set; }
         public string Mail { get; set; }
         public string Username { get; set; }
 
-        [NotMapped]
+        [NotMapped] // *
         public string Password { get; set; }
 
         public bool IsActive { get; set; }

@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Caching", "Caching", "{CD64AA78-ADED-4FC8-85CB-7C75B1CEE53F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogSitesi.Infrastructure.Caching.Memory", "Infrastructure\Caching\BlogSitesi.Infrastructure.Caching.Memory\BlogSitesi.Infrastructure.Caching.Memory.csproj", "{61E6A371-9F86-497A-8F35-C1787DABB0E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlogSitesi.Infrastructure.Caching.Memory", "Infrastructure\Caching\BlogSitesi.Infrastructure.Caching.Memory\BlogSitesi.Infrastructure.Caching.Memory.csproj", "{61E6A371-9F86-497A-8F35-C1787DABB0E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

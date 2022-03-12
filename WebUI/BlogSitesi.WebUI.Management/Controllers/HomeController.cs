@@ -1,4 +1,6 @@
 ﻿using BlogSitesi.Data;
+using BlogSitesi.WebUI.Infrastructure.Cache;
+using BlogSitesi.WebUI.Management.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,16 +11,26 @@ namespace BlogSitesi.WebUI.Management.Controllers
 {
     public class HomeController : Controller
     {
-        CategoryData _categoryData;
-        public HomeController(CategoryData categoryData)
+        ContentData _contentData;
+        TagData _tagData;
+        public HomeController(ContentData _contentData, TagData _tagData)
         {
-            _categoryData = categoryData;
+            this._contentData = _contentData;
+            this._tagData = _tagData;
         }
 
         public IActionResult Index()
         {
-            var categories = _categoryData.GetAll();
-            return View();
+            var content = _contentData.GetByPage(x => !x.IsDeleted, 1, 10, "PublishDate", true);
+            var tag = _tagData.GetByPage(x => !x.IsDeleted, 1, 10, "PublishDate", true);
+
+            var model = new HomeViewModel()
+            {
+                Contents = content,
+                Tags = tag,
+            };
+
+            return View(model);
         }
     }
 }

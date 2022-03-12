@@ -10,9 +10,7 @@ namespace BlogSitesi.Infrastructure.Caching.Memory
         public Cache (IMemoryCache _memoryCache)
         {
             memoryCache = _memoryCache;
-        }
-
-        
+        }      
         public bool TryGetValue(string key, out object value)
         {
             return memoryCache.TryGetValue(key, out value);

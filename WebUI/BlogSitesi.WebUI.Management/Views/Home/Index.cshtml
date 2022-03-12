@@ -1,5 +1,4 @@
 ﻿@model HomeViewModel
-
 @{
     ViewBag.Title = "Ana Sayfa";
 }
@@ -16,5 +15,25 @@
             {
                 <p>@item.Name</p>
             }
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <p>Son Eklenen 10 Makale</p>
+        @foreach (var item in Model.Contents)
+        {
+            <p>@item.Title</p>
+        }
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <p>Son Eklenen 10 Etiket</p>
+        @foreach (var item in Model.Tags)
+        {
+            <p>@item.Title</p>
+        }
     </div>
 </div>

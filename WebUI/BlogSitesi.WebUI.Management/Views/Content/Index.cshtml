@@ -1,0 +1,61 @@
+﻿@model List<BlogSitesi.Model.Content>
+@{
+    ViewBag.Title = "Makaleler";
+}
+
+<div class="container-fluid">
+
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Makaleler</h1>
+        <a href="@Url.Action("Add","Content")" class="btn btn-sm btn-primary shadow-sm">Yeni Makale Ekle</a>
+    </div>
+    <p class="mb-4 text-content">
+        Burada Makaleleri listeleyebilirim
+    </p>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Kayıtlı Makaleler</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Başlık</th>
+                            <th>Yayın</th>
+                            <th>IsActive</th>
+                            <th>-</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Title</td>
+                                <td>@item.PublishDate</td>
+                                <td>@Html.Raw(item.IsActive ? "Aktif" : "Pasif")</td>
+                                <td>
+                                    <a href="@Url.Action("Edit","Content", new { id = item.Id })" class="btn btn-primary">Düzenle</a>
+                                    <a href="@Url.Action("Delete","Content", new { id = item.Id })" class="btn btn-danger">Sil</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script src="~/_assets/js/jquery.dataTables.min.js"></script>
+    <script src="~/_assets/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#dataTable').DataTable();
+        });
+    </script>
+
+}

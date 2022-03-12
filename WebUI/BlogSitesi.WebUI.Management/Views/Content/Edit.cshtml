@@ -1,0 +1,97 @@
+﻿@model ContentEditViewModel
+@{
+    ViewBag.Title = "Makale Düzenle";
+}
+
+<div class="container-fluid">
+
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Makale Düzenle</h1>
+        <a href="@Url.Action("Index","Content")" class="btn btn-sm btn-primary shadow-sm">Listeye Dön</a>
+    </div>
+    <p class="mb-4">
+        Burada makaleyi düzenlerim
+    </p>
+
+    @Html.Raw(ViewResultExtensions.ViewResult(ViewBag.Result))
+
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <form action="/Content/Edit" method="post">
+                <div class="form-group">
+                    <select class="form-control" name="CategoryIds" multiple>
+                        <option value="-1">Seçiniz</option>
+                        @foreach (var item in cache.Categories)
+                        {
+                            var category = Model.Categories.Where(x => x.CategoryId == item.Id).FirstOrDefault();
+                            <!option value="@item.Id" @Html.Raw(category == null ? "" : "selected")>@item.Name</!option>
+                        }
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user" placeholder="Başlık" name="Content.Title" value="@Model.Content.Title">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user" placeholder="Slug" name="Content.Slug" value="@Model.Content.Slug">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user" placeholder="Meta Title" maxlength="60" name="Content.MetaTitle" value="@Model.Content.MetaTitle">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user" placeholder="Meta Description" maxlength="160" name="Content.MetaDescription" value="@Model.Content.MetaDescription">
+                </div>
+                <div class="form-group">
+                    <textarea name="Content.Description">@Model.Content.Description</textarea>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user" placeholder="Yayınlanma Tarihi" name="Content.PublishDate" value="@Model.Content.PublishDate">
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user" placeholder="Media Id" name="Content.MediaId" value="@Model.Content.MediaId">
+                </div>
+
+                <div class="form-group">
+                    @{
+                        var tags = "";
+                        foreach (var item in Model.TagNames)
+                        {
+                            tags += item + ",";
+                        }
+                    }
+
+                    <input type="text" class="form-control form-control-user" placeholder="Etiketler" name="Tags" value="@tags">
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-form-label col-lg-2 text-right">Aktif Mi?</label>
+                    <div class="col-lg-10">
+                        @Html.CheckBoxFor(a => a.Content.IsActive, new { @class = "checkbox" })
+                    </div>
+                </div>
+
+                <input type="hidden" class="form-control" name="Content.Id" value="@Model.Content.Id">
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Güncelle</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("textarea[name='Content.Description']").summernote({
+                height:300
+            });
+        });
+    </script>
+
+}

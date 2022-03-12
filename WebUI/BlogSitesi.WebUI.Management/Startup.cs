@@ -58,7 +58,14 @@ namespace BlogSitesi.WebUI.Management
             });
             //Data
             services.AddTransient<CategoryData>();
-
+            services.AddTransient<ContentData>();
+            services.AddTransient<ContentCategoryData>();
+            services.AddTransient<ContentTagData>();
+            services.AddTransient<TagData>();
+            services.AddTransient<MediaData>();
+            services.AddTransient<AuthorData>();
+            services.AddTransient<SettingData>();
+            services.AddTransient<CommentData>();
 
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
 
