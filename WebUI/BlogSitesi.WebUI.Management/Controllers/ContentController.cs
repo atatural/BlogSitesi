@@ -29,14 +29,12 @@ namespace BlogSitesi.WebUI.Management.Controllers
             _contentTagData = contentTagData;
             _mediaData = mediaData;
         }
-
         [HttpGet]
         public IActionResult Index()
         {
             var contents = _contentData.GetBy(x => !x.IsDeleted);
             return View(contents);
         }
-
         [HttpGet]
         public IActionResult Add()
         {
@@ -115,8 +113,6 @@ namespace BlogSitesi.WebUI.Management.Controllers
                         }
                     }
                 }
-
-
                 ViewBag.Result = new ViewModelResult(true, "Yeni Makale eklendi");
                 return View(new Model.Content());
             }
@@ -200,7 +196,6 @@ namespace BlogSitesi.WebUI.Management.Controllers
                             CategoryId = cat,
                             ContentId = content.Id,
                         };
-
                         _contentCategoryData.Insert(cat_model);
                     }
                 }
