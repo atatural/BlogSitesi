@@ -54,7 +54,7 @@ namespace BlogSitesi.WebUI.Management.Controllers
                 ViewBag.Result = new ViewModelResult(false, "Dosya uzantısı hatalı!");
                 }
 
-            var local_image_dir = $"_uploads/images";
+            var local_image_dir = $"wwwroot/_uploads/images";
             var local_image_path = $"{local_image_dir}/{file.FileName}";
 
             if (!Directory.Exists(Path.Combine(local_image_dir)))
@@ -136,7 +136,7 @@ namespace BlogSitesi.WebUI.Management.Controllers
 
             var media = _mediaData.GetByKey(id);
             if (media == null)
-                return RedirectToAction("Index", "Media", new { q = "medya-bulunamadi" });
+                return RedirectToAction("Index", "Media", new { q = "Medya-Bulunamadi" });
 
             var media_url = media.MediaUrl;
 
@@ -153,7 +153,7 @@ namespace BlogSitesi.WebUI.Management.Controllers
                     _contentData.Update(item);
                 }
             }
-                return RedirectToAction("Index", "Media", new { q = "medya-silindi" }); //13:42
+            return RedirectToAction("Index", "Media", new { q = "medya-silindi" }); //13:42
         }
     }
 }

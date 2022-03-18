@@ -11,6 +11,5 @@ namespace BlogSitesi.Model
         public string Alt { get; set; }
         public string Title { get; set; }
         public string MediaUrl { get; set; }
-
     }
 }
