@@ -1,0 +1,46 @@
+﻿@model BlogSitesi.Model.Author
+@{
+    ViewBag.Title = "Yazar Ekle";
+}
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-000">Kategoriler</h1>
+        <a href="@Url.Action("Index","Author")" class="btn btn-sm btn-primary shadow-sm">Listeye Dön</a>
+    </div>
+
+    <h1 class="h3 mb-2 text-gray-800">Yazar Ekle</h1>
+    <p class="mb-4">
+        Burada yeni yazar eklenebilir.
+    </p>
+
+    @Html.Raw(ViewResultExtensions.ViewResult(ViewBag.Result))
+
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <form action="/Author/Add" method="post">
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user" placeholder="Adı Soyadı" name="FullName" value="@Model.FullName">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user" placeholder="Mail" name="Mail" value="@Model.Mail">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-user" placeholder="Kullanıcı Adı" name="Username" value="@Model.Username">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control form-control-user" placeholder="Şifre" name="Password" value="@Model.Password">
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-form-label col-lg-2 text-right">Aktif Mi?</label>
+                    <div class="col-lg-10">
+                        @Html.CheckBoxFor(a => a.IsActive, new { @class = "checkbox" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Ekle</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

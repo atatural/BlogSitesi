@@ -17,9 +17,11 @@ namespace BlogSitesi.Model
             PublishDate = DateTime.Now;
         }
 
-
         public int MediaId { get; set; }
         public virtual Media Media { get; set; }
+
+        public int AuthorId{ get; set; }
+        public virtual Author Author{ get; set; }
 
         public string Title { get; set; }
         public string MetaTitle { get; set; }

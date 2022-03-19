@@ -7,6 +7,7 @@ namespace BlogSitesi.Model
 {
     public class Author : Core.ModelBase
     {
+
         public string FullName { get; set; }
         public string Mail { get; set; }
         public string Username { get; set; }

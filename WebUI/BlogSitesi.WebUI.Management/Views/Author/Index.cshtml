@@ -1,0 +1,49 @@
+﻿@model List<BlogSitesi.Model.Author>
+@{
+    ViewBag.Title = "Yazarlar";
+}
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-black-50">Yazarlar</h1>
+        <a href="@Url.Action("Add","Author")" class="btn btn-sm btn-success shadow-sm">Yeni Yazar Ekle</a>
+    </div>
+    <!-- Page Heading -->
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Kayıtlı Yazarlar</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Kullanıcı Adı</th>  
+                            <th>Ad Soyad</th>
+                            <th>Mail</th>
+                            <th>Durum</th>
+                            <th>Operasyon</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Username</td>
+                                <td>@item.FullName</td>
+                                <td>@item.Mail</td>
+                                <td>@Html.Raw(item.IsActive ? "Aktif" : "Pasif")</td>
+                                <td>
+                                    <a href="@Url.Action("Edit","Author", new {id = item.Id})" class="btn btn-primary">Düzenle</a>
+                                    <a href="@Url.Action("Delete","Author", new {id = item.Id})" class="btn btn-danger">Sil</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+ 
