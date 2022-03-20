@@ -1,36 +1,85 @@
 ﻿using BlogSitesi.Data;
 using BlogSitesi.WebUI.Infrastructure.Cache;
+using BlogSitesi.WebUI.Management.Authorize;
 using BlogSitesi.WebUI.Management.Models;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace BlogSitesi.WebUI.Management.Controllers
 {
     public class HomeController : Controller
     {
-        ContentData _contentData;
-        TagData _tagData;
-        public HomeController(ContentData _contentData, TagData _tagData)
+        AuthorData _authorData;
+
+        public HomeController(AuthorData authorData)
         {
-            this._contentData = _contentData;
-            this._tagData = _tagData;
+            this._authorData = _authorData;
         }
-
+        [Authorize]
         public IActionResult Index()
+        {         
+            return View();
+        }
+        [HttpGet]
+        public IActionResult Login()
         {
-            var content = _contentData.GetByPage(x => !x.IsDeleted, 1, 10, "PublishDate", true);
-            var tag = _tagData.GetByPage(x => !x.IsDeleted, 1, 10, "PublishDate", true);
-
-            var model = new HomeViewModel()
+            var model = new LoginModel()
             {
-                Contents = content,
-                Tags = tag,
+                Username = "",
+                Password = "",
             };
 
-            return View(model);
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login(string username, string password)
+        {
+            var errors = new List<string>();
+            var return_model = new LoginModel();
+
+            if (string.IsNullOrEmpty(username)) errors.Add("Makale Başlığı Boş Bırakılamaz");
+            if (string.IsNullOrEmpty(password)) errors.Add("Makale Slug Boş Bırakılamaz");
+            if (errors.Count() > 0)
+            {
+                ViewBag.Result = new ViewModelResult(false, "Hata Oluştu", errors);
+                return View(return_model);
+            }
+
+            var author = _authorData.GetBy(x => x.Username == username && x.Password == password && x.IsActive && !x.IsDeleted).FirstOrDefault();
+            if (author == null)
+            {
+                ViewBag.Result = new ViewModelResult(false, "Böyle bir kullanıcı bulunamadı.");
+                return_model.Username = username;
+                return View(return_model);
+            }
+
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, author.FullName),
+                new Claim("AuthorId", author.Id.ToString()),
+                new Claim(ClaimTypes.Role,"q")
+            };
+
+            var claims_identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var auth_properties = new AuthenticationProperties
+            {
+                ExpiresUtc = System.DateTimeOffset.UtcNow.AddMinutes(60)
+            };
+
+            HttpContext.SignInAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme,
+                new ClaimsPrincipal(claims_identity),
+                auth_properties
+            );
+
+            return RedirectToAction("Index");
         }
     }
 }

@@ -8,32 +8,3 @@
         <h1 class="h3 mb-0 text-gray-800">Yönetim Paneli</h1>
     </div>
 </div>
-
-<div class="container-fluid">
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        @foreach(var item in cache.Categories)
-            {
-                <p>@item.Name</p>
-            }
-    </div>
-</div>
-
-<div class="container-fluid">
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <p>Son Eklenen 10 Makale</p>
-        @foreach (var item in Model.Contents)
-        {
-            <p>@item.Title</p>
-        }
-    </div>
-</div>
-
-<div class="container-fluid">
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <p>Son Eklenen 10 Etiket</p>
-        @foreach (var item in Model.Tags)
-        {
-            <p>@item.Name</p>
-        }
-    </div>
-</div>

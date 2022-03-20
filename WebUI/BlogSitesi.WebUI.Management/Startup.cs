@@ -2,6 +2,7 @@ using BlogSitesi.Data;
 using BlogSitesi.Data.Infrastructor.Entities;
 using BlogSitesi.WebUI.Infrastructure.Cache;
 using BlogSitesi.WebUI.Infrastructure.Rules;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -56,6 +57,13 @@ namespace BlogSitesi.WebUI.Management
             {
                 options.MinimumSameSitePolicy = SameSiteMode.Strict;
             });
+            services.AddAuthentication(o =>
+                {
+                    o.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                })
+                .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, o => { o.LoginPath = new PathString("/login/"); });
+
+
             //Data
             services.AddTransient<CategoryData>();
             services.AddTransient<ContentData>();
@@ -96,6 +104,7 @@ namespace BlogSitesi.WebUI.Management
             app.UseRewriter(options);
 
             app.UseRouting();
+            app.UseAuthentication();
             app.UseStaticFiles();
 
             app.UseMvc(routes =>
