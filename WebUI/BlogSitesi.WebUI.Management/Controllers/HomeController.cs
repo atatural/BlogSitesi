@@ -17,7 +17,7 @@ namespace BlogSitesi.WebUI.Management.Controllers
     {
         AuthorData _authorData;
 
-        public HomeController(AuthorData authorData)
+        public HomeController(AuthorData _authorData)
         {
             this._authorData = _authorData;
         }
@@ -44,8 +44,8 @@ namespace BlogSitesi.WebUI.Management.Controllers
             var errors = new List<string>();
             var return_model = new LoginModel();
 
-            if (string.IsNullOrEmpty(username)) errors.Add("Makale Başlığı Boş Bırakılamaz");
-            if (string.IsNullOrEmpty(password)) errors.Add("Makale Slug Boş Bırakılamaz");
+            if (string.IsNullOrEmpty(username)) errors.Add("Kullanıcı Adı Boş Bırakılamaz");
+            if (string.IsNullOrEmpty(password)) errors.Add("Şifre Boş Bırakılamaz");
             if (errors.Count() > 0)
             {
                 ViewBag.Result = new ViewModelResult(false, "Hata Oluştu", errors);
@@ -64,7 +64,7 @@ namespace BlogSitesi.WebUI.Management.Controllers
             {
                 new Claim(ClaimTypes.Name, author.FullName),
                 new Claim("AuthorId", author.Id.ToString()),
-                new Claim(ClaimTypes.Role,"q")
+                new Claim(ClaimTypes.Role, author.RoleId.ToString())
             };
 
             var claims_identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -78,7 +78,6 @@ namespace BlogSitesi.WebUI.Management.Controllers
                 new ClaimsPrincipal(claims_identity),
                 auth_properties
             );
-
             return RedirectToAction("Index");
         }
     }

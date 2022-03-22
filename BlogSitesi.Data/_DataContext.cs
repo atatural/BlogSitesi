@@ -21,6 +21,8 @@ namespace BlogSitesi.Data
         public DbSet<Model.Media> Medias{ get; set; }
         public DbSet<Model.Tag> Tags { get; set; }
         public DbSet<Model.Setting> Settings{ get; set; }
+        public DbSet<Model.Role> Role{ get; set; }
+        public DbSet<Model.RolePage> RolePage{ get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -33,6 +35,8 @@ namespace BlogSitesi.Data
             builder.Entity<Model.Media>(entitiy => entitiy.ToTable("blog_medias"));
             builder.Entity<Model.Tag>(entitiy => entitiy.ToTable("blog_tags"));
             builder.Entity<Model.Setting>(entitiy => entitiy.ToTable("blog_setting"));
+            builder.Entity<Model.Role>(entitiy => entitiy.ToTable("blog_roles"));
+            builder.Entity<Model.RolePage>(entitiy => entitiy.ToTable("blog_role_pages"));
 
             foreach (var entityType in builder.Model.GetEntityTypes())
             {

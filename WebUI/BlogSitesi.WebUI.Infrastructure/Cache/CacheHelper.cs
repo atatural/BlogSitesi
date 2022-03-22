@@ -11,11 +11,14 @@ namespace BlogSitesi.WebUI.Infrastructure.Cache
     {
         ICache cache;
         CategoryData _categoryData;
+        RolePageData _rolePageData;
 
-        public CacheHelper(ICache cache, CategoryData categoryData)
+
+        public CacheHelper(ICache cache, CategoryData categoryData, RolePageData rolePageData)
         {
             this.cache = cache;
             _categoryData = categoryData;
+            _rolePageData = rolePageData;
         }
 
         private string Categories_CacheKey = "Categories_CacheKey";
@@ -36,6 +39,29 @@ namespace BlogSitesi.WebUI.Infrastructure.Cache
                 }
                 return fromCache;
             }
+        }
+
+        private string RolePage_CacheKey= "RolePage_CacheKey";
+        public bool RolePage() { return Clear(RolePage_CacheKey); }
+        public List<Model.RolePage> RolePages(int roleId)
+        {
+           
+                var fromCache = Get<List<Model.RolePage>>(RolePage_CacheKey);
+                if (fromCache == null)
+                {
+                    var datas = _rolePageData.GetBy(x => x.RoleId == roleId);
+                    if (datas != null && datas.Count() > 0)
+                    {
+                        Set(Categories_CacheKey, datas);
+                        fromCache = datas;
+                    }
+                }
+            if (fromCache != null)
+            {
+                return fromCache.Where(x => x.RoleId == roleId).ToList();
+            }
+                return new List<Model.RolePage>();
+            
         }
 
         public bool Clear(string name)
