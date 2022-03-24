@@ -20,7 +20,7 @@ namespace BlogSitesi.Model
         public int MediaId { get; set; }
         public virtual Media Media { get; set; }
 
-        public int AuthorId{ get; set; }
+        public int AuthorId { get; set; }
         public virtual Author Author{ get; set; }
 
         public string Title { get; set; }

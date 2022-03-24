@@ -23,7 +23,7 @@ namespace BlogSitesi.WebUI.Management.Authorize
         {
 
             var role = context.HttpContext.User.Claims.FirstOrDefault(x => x.Type == System.Security.Claims.ClaimTypes.Role);
-            if(role == null)
+            if(role == null || role.Value == "") 
             {
                 context.Result = new RedirectResult("/Home/Login");
                 return;

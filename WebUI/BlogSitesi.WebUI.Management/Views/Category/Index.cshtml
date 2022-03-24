@@ -8,7 +8,6 @@
         <a href="@Url.Action("Add","Category")" class="btn btn-sm btn-success shadow-sm">Yeni Kategori Ekle</a>
     </div>
     <!-- Page Heading -->
-
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -42,3 +41,12 @@
         </div>
     </div>
 </div>
+<script src="~/_assets/js/jquery.dataTables.min.js"></script>
+<script src="~/_assets/js/dataTables.bootstrap4.min.js"></script>
+<script>
+        // Call the dataTables jQuery plugin
+        $(document).ready(function () {
+            $('#dataTable').DataTable();
+        });
+
+</script>

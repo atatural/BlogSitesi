@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace BlogSitesi.WebUI.Management.Controllers
 {
+    [Authorize]
     public class AuthorController : Controller
     {
         AuthorData _authorData;
@@ -30,7 +31,6 @@ namespace BlogSitesi.WebUI.Management.Controllers
             var author = new Model.Author();
             return View(author);
         }
-
         [HttpPost]
         public IActionResult Add(Model.Author author)
         {

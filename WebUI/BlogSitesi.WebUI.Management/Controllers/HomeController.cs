@@ -80,5 +80,25 @@ namespace BlogSitesi.WebUI.Management.Controllers
             );
             return RedirectToAction("Index");
         }
+        [HttpGet]
+        public IActionResult Logout()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            }
+            return RedirectToAction("Login", "Home");
+        }
+        [HttpGet]
+        public IActionResult _403()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            }
+            return RedirectToAction("Login", "Home");
+        }
+
     }
+    
 }

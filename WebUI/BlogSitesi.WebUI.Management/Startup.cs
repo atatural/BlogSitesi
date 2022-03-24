@@ -74,6 +74,8 @@ namespace BlogSitesi.WebUI.Management
             services.AddTransient<AuthorData>();
             services.AddTransient<SettingData>();
             services.AddTransient<CommentData>();
+            services.AddTransient<RolePageData>();
+            services.AddTransient<RoleData>();
 
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
 

@@ -4409,7 +4409,10 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
         color: #fff
     }
 
-.navbar-dark .navbar-nav .nav-link {
+.navbar-light .navbar-nav .show > .nav-link {
+    color: rgba(0,0,0,.9);
+}
+    .navbar-dark .navbar-nav .nav-link {
     color: rgba(255,255,255,.5)
 }
 

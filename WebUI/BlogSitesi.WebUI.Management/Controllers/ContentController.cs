@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace BlogSitesi.WebUI.Management.Controllers
 {
+    [Authorize]
     public class ContentController : Controller
     {
         CategoryData _categoryData;
@@ -56,6 +57,7 @@ namespace BlogSitesi.WebUI.Management.Controllers
             }
 
             content.Slug = content.Slug.ToSlug();
+            content.AuthorId = 1;
 
             var operationResult = _contentData.Insert(content);
             if (operationResult.IsSucceed)
