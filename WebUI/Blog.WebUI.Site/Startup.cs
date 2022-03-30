@@ -1,4 +1,6 @@
+using BlogSitesi.Data;
 using BlogSitesi.Data.Infrastructor.Entities;
+using BlogSitesi.WebUI.Infrastructure.Cache;
 using BlogSitesi.WebUI.Infrastructure.Rules;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -47,12 +49,29 @@ namespace Blog.WebUI.Site
             services.Configure<DatabaseSetting>(Configuration.GetSection("DatabaseSetting"));
             services.AddOptions();
 
+            //Cache
+            services.AddMemoryCache();
+            services.AddTransient<ICache, BlogSitesi.Infrastructure.Caching.Memory.Cache>();
+            services.AddTransient<CacheHelper>();
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 options.MinimumSameSitePolicy = SameSiteMode.Strict;
             });
 
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
+            //Data
+            services.AddTransient<CategoryData>();
+            services.AddTransient<ContentData>();
+            services.AddTransient<ContentCategoryData>();
+            services.AddTransient<ContentTagData>();
+            services.AddTransient<TagData>();
+            services.AddTransient<MediaData>();
+            services.AddTransient<AuthorData>();
+            services.AddTransient<SettingData>();
+            services.AddTransient<CommentData>();
+            services.AddTransient<RolePageData>();
+            services.AddTransient<RoleData>();
 
             services.AddMvc(x =>
             {

@@ -11,14 +11,17 @@ namespace BlogSitesi.WebUI.Infrastructure.Cache
     {
         ICache cache;
         CategoryData _categoryData;
+        AuthorData _authorData;
         RolePageData _rolePageData;
+        SettingData _settingData;
+        ContentData _contentData;
 
-
-        public CacheHelper(ICache cache, CategoryData categoryData, RolePageData rolePageData)
+        public CacheHelper(ICache cache, CategoryData categoryData, RolePageData rolePageData , ContentData contentData)
         {
             this.cache = cache;
             _categoryData = categoryData;
             _rolePageData = rolePageData;
+            _contentData = contentData;
         }
 
         private string Categories_CacheKey = "Categories_CacheKey";
@@ -62,6 +65,26 @@ namespace BlogSitesi.WebUI.Infrastructure.Cache
             }
                 return new List<Model.RolePage>();
             
+        }
+
+        private string NewContents_CacheKey = "NewContents_CacheKey";
+        public bool NewContentsClear() { return Clear(NewContents_CacheKey); }
+        public List<Model.Content> NewContents
+        {
+            get
+            {
+                var fromCache = Get<List<Model.Content>>(NewContents_CacheKey);
+                if (fromCache == null)
+                {
+                    var datas = _contentData.GetBlogNewContents(25);
+                    if (datas != null && datas.Count() > 0)
+                    {
+                        Set(NewContents_CacheKey, datas);
+                        fromCache = datas;
+                    }
+                }
+                return new List<Model.Content>();
+            }         
         }
 
         public bool Clear(string name)

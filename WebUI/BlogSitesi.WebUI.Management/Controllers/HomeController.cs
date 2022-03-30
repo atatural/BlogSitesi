@@ -34,7 +34,6 @@ namespace BlogSitesi.WebUI.Management.Controllers
                 Username = "",
                 Password = "",
             };
-
             return View();
         }
 

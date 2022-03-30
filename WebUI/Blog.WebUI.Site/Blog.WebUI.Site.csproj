@@ -10,6 +10,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\BlogSitesi.Data\BlogSitesi.Data.csproj" />
+    <ProjectReference Include="..\..\BlogSitesi.Model\BlogSitesi.Model.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Caching\BlogSitesi.Infrastructure.Caching.Memory\BlogSitesi.Infrastructure.Caching.Memory.csproj" />
     <ProjectReference Include="..\BlogSitesi.WebUI.Infrastructure\BlogSitesi.WebUI.Infrastructure.csproj" />
   </ItemGroup>
 

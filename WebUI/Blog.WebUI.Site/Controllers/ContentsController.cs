@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Blog.WebUI.Site.Controllers
 {
-    public class CategoryController : Controller
+    public class ContentsController : Controller
     {
-        public IActionResult Index(string slug)
+        public IActionResult Index()
         {
             return View();
         }
